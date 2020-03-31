@@ -1,0 +1,31 @@
+import os 
+import csv 
+import pandas as pd
+Pypoll_csv = os.path.expanduser('~/Desktop/homework3/python-challenge/PyPoll/election_data.csv')
+PyPoll_file = "election_data.csv"
+pypoll = pd.read_csv(PyPoll_file)
+TotalVotes = len(pypoll)
+print(TotalVotes)
+
+Candidate_List = pypoll["Candidate"].unique()
+Candidate_List
+
+Percentage_votes = pypoll["Candidate"].value_counts(normalize=True)
+
+percent_vote = Percentage_votes.map('{:.0%}'.format)
+
+percent_vote
+
+
+
+
+List_of_candidates = {'candiate' : Candidate_List, 'votes' : percent_vote}
+
+pd.DataFrame(List_of_candidates)
+
+votes_df
+
+
+
+winner = votes_df.iloc[0,0]
+print(f"Winner: {winner}")
